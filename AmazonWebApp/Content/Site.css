@@ -95,6 +95,11 @@ header h2 {
 .items .item {
     border: 1px solid #ccc;
     padding: 10px;
+    border-bottom: 0;
+}
+
+.items .item:last-child {
+    border-bottom: 1px solid #ccc;
 }
 
 .load-more {
