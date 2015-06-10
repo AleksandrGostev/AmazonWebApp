@@ -1,39 +1,104 @@
 ﻿@model AmazonWebApp.Models.Home.SearchItemViewModel
 @if (Model != null && Model.Items != null)
 {
-        foreach (var item in Model.Items)
-        {
-            <div class="col-lg-12 col-md-12 item" data-item-page="@item.Page" data-index-on-page="@item.IndexOnPage">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-3">
-                        @if (item.SmallImage != null)
+    foreach (var item in Model.Items)
+    {
+        <div class="col-lg-12 col-md-12 item" data-item-page="@item.Page" data-index-on-page="@item.IndexOnPage">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 item-title">
+                    <strong>@item.ItemAttributes.Title</strong>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 item-image">
+                    @if (item.MediumImage != null)
+                    {
+                        <img src="@item.MediumImage.URL" />
+                    }
+                    else
+                    {
+                        <h4>No image</h4>
+                    }
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <strong>Brand:</strong>
+                                </div>
+                                <div class="col-sm-9">
+                                    @item.ItemAttributes.Brand
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <strong>Size:</strong>
+                                </div>
+                                <div class="col-sm-9">
+                                    @item.ItemAttributes.Size
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <strong>Color:</strong>
+                                </div>
+                                <div class="col-sm-9">
+                                    @item.ItemAttributes.Color
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <strong>Department:</strong>
+                                </div>
+                                <div class="col-sm-9">
+                                    @item.ItemAttributes.Department
+                                </div>
+                            </div>
+                        </div>
+                        @if (item.ItemAttributes.ListPrice != null)
                         {
-                            <img src="@item.SmallImage.URL" />
+                            <div class="col-lg-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <strong>List Price:</strong>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <span data-usd-price="@item.ItemAttributes.ListPrice.FormattedPrice.Trim('$')" class="item-price">@item.ItemAttributes.ListPrice.FormattedPrice.Trim('$') USD</span>
+                                    </div>
+                                </div>
+                            </div>
                         }
-                        else
+                        @if (item.OfferSummary != null && item.OfferSummary.LowestNewPrice != null)
                         {
-                            <h4>No image</h4>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <strong>Lowest new price:</strong>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9">
+                                        <span data-usd-price="@item.OfferSummary.LowestNewPrice.FormattedPrice.Trim('$')" class="item-price">@item.OfferSummary.LowestNewPrice.FormattedPrice.Trim('$') USD</span>
+                                    </div>
+                                </div>
+                            </div>
                         }
-                    </div>
-                    <div class="col-lg-9 col-md-9 col-sm-9">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12">Title: @item.ItemAttributes.Title</div>
-                            <div class="col-lg-12 col-md-12">Brand: @item.ItemAttributes.Brand</div>
-                            <div class="col-lg-12 col-md-12">Size: @item.ItemAttributes.Size</div>
-                            <div class="col-lg-12 col-md-12">Color: @item.ItemAttributes.Color</div>
-                            <div class="col-lg-12 col-md-12">Department: @item.ItemAttributes.Department</div>
-                            @if (item.ItemAttributes.ListPrice != null)
-                            {
-                                <div class="col-lg-12 col-md-12">List Price: <span data-usd-price="@item.ItemAttributes.ListPrice.FormattedPrice.Trim('$')" class="item-price">@item.ItemAttributes.ListPrice.FormattedPrice.Trim('$') USD</span></div>
-                            }
-                            @if (item.OfferSummary != null && item.OfferSummary.LowestNewPrice != null)
-                            {
-                                <div class="col-lg-12 col-md-12">Lowest new price: <span data-usd-price="@item.OfferSummary.LowestNewPrice.FormattedPrice.Trim('$')" class="item-price">@item.OfferSummary.LowestNewPrice.FormattedPrice.Trim('$') USD</span></div>
-                            }
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="@item.DetailPageURL" target="_blank" class="btn btn-default">In Amazon</a></div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <strong>Link:</strong>
+                                </div>
+                                <div class="col-sm-9">
+                                    <a href="@item.DetailPageURL" target="_blank" class="amazon-link"></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        }
+        </div>
+    }
 }

@@ -7,7 +7,7 @@ namespace AmazonWebApp.DAO
     public class Item
     {
         public string DetailPageURL { get; set; }
-        public SmallImage SmallImage { get; set; }
+        public MediumImage MediumImage { get; set; }
         public ItemAttributes ItemAttributes { get; set; }
         public int Page { get; set; }
         public int IndexOnPage { get; set; }
@@ -15,7 +15,7 @@ namespace AmazonWebApp.DAO
 
     }
 
-    public class SmallImage
+    public class MediumImage
     {
         public string URL { get; set; }
     }

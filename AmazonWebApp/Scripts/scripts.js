@@ -13,6 +13,7 @@ $(document).ready(function () {
 
     $('body').on('click', '.load-more', function () {
         $('.items').append(preloadedContent);
+        updateShowCount();
         $('#currencies').trigger('change');
         preloadNextItems();
     });
@@ -32,9 +33,15 @@ function loadItems(callback) {
         },
         success: function (data) {
             callback(data);
+            updateShowCount();
             $('#currencies').trigger('change');
         }
     });
+}
+
+function updateShowCount() {
+    var count = $('.item').length;
+    $('.items-count').text("Showing " + count + " items");
 }
 
 function preloadNextItems() {

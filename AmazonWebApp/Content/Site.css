@@ -74,17 +74,8 @@ textarea {
 
 header {
     border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
+    padding: 0 30px 10px 30px;
     margin-bottom: 25px;
-}
-
-header h2 {
-    text-align: center;
-
-}
-
-.result-box {
-    padding: 15px 0;
 }
 
 .items {
@@ -98,13 +89,37 @@ header h2 {
     border-bottom: 0;
 }
 
+.items .item .item-title {
+    margin-bottom: 20px
+}
+
+.items .item .item-image {
+    text-align: center;
+}
+
 .items .item:last-child {
     border-bottom: 1px solid #ccc;
 }
 
+.items-count {
+    padding-top: 20px;
+}
+
+
 .load-more {
     display: none;
     margin: 20px;
+}
+
+.item-price {
+    font-weight: bold;
+}
+
+.amazon-link {
+    background: url('img/amazon-link.png') 0 0 no-repeat;
+    width: 120px;
+    height: 31px;
+    display: block;
 }
 
 /* CUSTOM STYLES */
